@@ -89,7 +89,6 @@ def map_creator(year:int, user_latitude: float, user_longitude: float) -> str:
     >>> map_creator(50,0,2010)
     'Created'
     """
-    film_map = folium.Map()
     num_of_points = 10
     locations = [(0,0,0,9999999) for i in range(num_of_points)]
     with open('helper2.csv',encoding='utf-8') as file:
@@ -104,7 +103,7 @@ def map_creator(year:int, user_latitude: float, user_longitude: float) -> str:
                 locations.append((film_name, latitude, longitude, dist))
                 locations.sort(key=lambda x: x[3])
                 locations.pop(num_of_points)
-    film_map = folium.Map(location=[user_latitude, user_longitude], zoom_start=4)
+    film_map = folium.Map(location=[user_latitude, user_longitude], zoom_start=6)
     films=folium.FeatureGroup(name='Nearest film locations')
     for elem in locations:
         iframe = folium.IFrame(html=elem[0],
