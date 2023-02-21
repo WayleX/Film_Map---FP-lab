@@ -114,6 +114,15 @@ def map_creator(year:int, user_latitude: float, user_longitude: float) -> str:
                     popup=folium.Popup(iframe),
                     icon=folium.Icon(color = "red")))
     film_map.add_child(films)
+
+    area = folium.FeatureGroup(name="Population")
+    area.add_child(folium.GeoJson(data=open('world.json', 'r',
+                                            encoding='utf-8-sig').read(),
+                                style_function=lambda x: {'fillColor':
+        'blue' if x['properties']['AREA'] < 30000
+    else 'yellow' if 30000 <= x['properties']['AREA'] < 60000
+    else 'red'}))
+    film_map.add_child(area)
     folium.raster_layers.TileLayer(tiles='Stamen Toner',overlay=True).add_to(film_map)
     folium.raster_layers.TileLayer(tiles='Stamen Terrain',overlay=True).add_to(film_map)
     film_map.add_child(folium.LayerControl())

@@ -24,6 +24,6 @@ List of layers:
  1. Default
  2. Stamen Tonner
  3. Stamen terrain
-
+ 4. Population
 So with this map you can try to find films which where filmed in your hometown or in any point Europe you want.
  
